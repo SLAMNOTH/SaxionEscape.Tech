@@ -1,31 +1,113 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | SaxionEscape</title>
-    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SaxionEscape - A 2D runner game developed for a school project. Run, jump, and escape in this exciting adventure!">
+    <meta property="og:title" content="SaxionEscape - 2D Runner Game">
+    <meta property="og:description" content="Experience the thrill of SaxionEscape, a 2D runner game developed by our school project team. Run, jump, and escape in this exciting adventure!">
+    <meta property="og:image" content="https://i.imgur.com/dudtfxD.png">
+    <meta property="og:image:width" content="600">
+    <meta property="og:image:height" content="400">
+    <meta property="og:url" content="https://saxionescape.tech"> <!-- Replace with your actual website URL -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@YourTwitterHandle"> <!-- Replace with your Twitter handle -->
+    <meta name="twitter:title" content="SaxionEscape - 2D Runner Game">
+    <meta name="twitter:description" content="Experience the thrill of SaxionEscape, a 2D runner game developed for a school project. Run, jump, and escape in this exciting adventure!">
+    <meta name="twitter:image" content="https://i.imgur.com/dudtfxD.png">
+    <title>SaxionEscape</title>
+    <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="TemplateData/style.css">
-  </head>
-  <body>
+    <style>
+        /* Your existing styles go here */
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+
+        #topbar {
+            background-color: #36AEA5;
+            padding: 20px;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        #title {
+            font-size: 32px;
+            margin: 10px 0;
+        }
+
+        #menu {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #menu li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        #menu a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 18px;
+            transition: color 0.3s; /* Smooth transition for color change */
+        }
+
+        #menu a:hover {
+            color: #e0e0e0; /* Change the color on hover */
+        }
+
+        @media only screen and (max-width: 600px) {
+            #title {
+                font-size: 24px;
+            }
+
+            #menu a {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Topbar -->
+    <div id="topbar">
+        <div id="title">SaxionEscape</div>
+        <ul id="menu">
+            <li><a href="#">Play</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+    </div>
+    
+
+    <!-- Unity WebGL game container -->
     <div id="unity-container" class="unity-desktop">
-      <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
-      <div id="unity-loading-bar">
-        <div id="unity-logo"></div>
-        <div id="unity-progress-bar-empty">
-          <div id="unity-progress-bar-full"></div>
+        <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
+        <div id="unity-loading-bar">
+          <div id="unity-logo"></div>
+          <div id="unity-progress-bar-empty">
+            <div id="unity-progress-bar-full"></div>
+          </div>
+        </div>
+        <div id="unity-warning"> </div>
+        <div id="unity-footer">
+          <div id="unity-webgl-logo"></div>
+          <div id="unity-fullscreen-button"></div>
+          <div id="unity-build-title">SaxionEscape</div>
         </div>
       </div>
-      <div id="unity-warning"> </div>
-      <div id="unity-footer">
-        <div id="unity-webgl-logo"></div>
-        <div id="unity-fullscreen-button"></div>
-        <div id="unity-build-title">SaxionEscape</div>
-      </div>
-    </div>
-    <script>
 
-      var container = document.querySelector("#unity-container");
+    <!-- Unity WebGL game script -->
+    <script>
+        var container = document.querySelector("#unity-container");
       var canvas = document.querySelector("#unity-canvas");
       var loadingBar = document.querySelector("#unity-loading-bar");
       var progressBarFull = document.querySelector("#unity-progress-bar-full");
@@ -55,8 +137,38 @@
         }
         updateBannerVisibility();
       }
+    </script>
 
-      var buildUrl = "Build";
+    <!-- Title change script (from your website) -->
+    <script>
+        var pageTitle = document.title; // get the original page title
+        var attentionMessages = ["🙏🏽VOTE SAXIONESCAPE!", "❌ PLEASE STAY!", "🚛 STEM OP SAXIONESCAPE!", "🎅🏽 SAXIONESCAPE"];
+
+        function changeTitle() {
+            if (document.hidden) {
+                var messageIndex = 0;
+                var attentionTimer = setInterval(function () {
+                    document.title = attentionMessages[messageIndex];
+                    messageIndex = (messageIndex + 1) % attentionMessages.length;
+                }, 1000);
+                document.addEventListener("visibilitychange", function () {
+                    clearInterval(attentionTimer);
+                    document.title = pageTitle;
+                });
+            } else {
+                document.title = pageTitle;
+            }
+        }
+
+        document.addEventListener("visibilitychange", changeTitle);
+        document.addEventListener("webkitvisibilitychange", changeTitle);
+        document.addEventListener("mozvisibilitychange", changeTitle);
+        document.addEventListener("msvisibilitychange", changeTitle);
+    </script>
+
+    <!-- Unity loader script -->
+    <script>
+          var buildUrl = "Build";
       var loaderUrl = buildUrl + "/GamePreview2.loader.js";
       var config = {
         dataUrl: buildUrl + "/GamePreview2.data",
@@ -118,5 +230,7 @@
       document.body.appendChild(script);
 
     </script>
-  </body>
+
+</body>
+
 </html>
