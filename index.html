@@ -1,97 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saxion Escape Game</title>
-    <link rel="icon" href="icon.ico" type="image/x-icon">
+    <meta name="description" content="SaxionEscape - A 2D runner game developed for a school project. Run, jump, and escape in this exciting adventure!">
+    <meta property="og:title" content="SaxionEscape - 2D Runner Game">
+    <meta property="og:description" content="Experience the thrill of SaxionEscape, a 2D runner game developed by our school project team. Run, jump, and escape in this exciting adventure!">
+    <meta property="og:image" content="blob:https://imgur.com/baf5d604-0b51-471f-8121-f01b94a7bbb9">
+    <meta property="og:image:width" content="600">
+    <meta property="og:image:height" content="400">
+    <meta property="og:url" content="https://yourwebsite.com"> <!-- Replace with your actual website URL -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@YourTwitterHandle"> <!-- Replace with your Twitter handle -->
+    <meta name="twitter:title" content="SaxionEscape - 2D Runner Game">
+    <meta name="twitter:description" content="Experience the thrill of SaxionEscape, a 2D runner game developed for a school project. Run, jump, and escape in this exciting adventure!">
+    <meta name="twitter:image" content="blob:https://imgur.com/baf5d604-0b51-471f-8121-f01b94a7bbb9">
+    <title>SaxionEscape</title>
 
-    <!-- Primary Meta Tags -->
-    <meta name="title" content="Saxion Escape Game" />
-    <meta name="description" content="Play the saxionEscape game for free!" />
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://metatags.io/" />
-    <meta property="og:title" content="Saxion Escape Game" />
-    <meta property="og:description" content="Play the saxionEscape game for free!" />
-    <meta property="og:image" content="https://metatags.io/images/meta-tags.png" />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://metatags.io/" />
-    <meta property="twitter:title" content="Saxion Escape Game" />
-    <meta property="twitter:description" content="Play the saxionEscape game for free!" />
-    <meta property="twitter:image" content="https://metatags.io/images/meta-tags.png" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
 
     <style>
+        /* Your existing styles go here */
+
         body {
             margin: 0;
             padding: 0;
+            background-color: #ffffff;
             font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
         }
 
-        header {
+        #topbar {
             background-color: #36AEA5;
-            padding: 10px;
+            padding: 20px;
             text-align: center;
+            color: #ffffff;
         }
 
-        h1 {
+        #title {
+            font-size: 32px;
+            margin: 10px 0;
+        }
+
+        #menu {
+            list-style-type: none;
+            padding: 0;
             margin: 0;
-            color: white;
         }
 
-        nav {
-            background-color: #333;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            width: 100%;
+        #menu li {
+            display: inline;
+            margin-right: 20px;
         }
 
-        nav a {
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 16px;
+        #menu a {
             text-decoration: none;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 18px;
+            transition: color 0.3s; /* Smooth transition for color change */
         }
 
-        nav a:hover {
-            background-color: #ddd;
-            color: black;
+        #menu a:hover {
+            color: #e0e0e0; /* Change the color on hover */
         }
 
-        img {
-            width: 200px; /* Adjust as needed */
-            height: auto;
-            display: block;
-            margin: 20px auto;
+        @media only screen and (max-width: 600px) {
+            #title {
+                font-size: 24px;
+            }
+
+            #menu a {
+                font-size: 16px;
+            }
         }
     </style>
 </head>
 
+<script>
+    var pageTitle = document.title; // get the original page title
+    var attentionMessages = ["🙏🏽VOTE SAXIONESCAPE!", "❌ PLEASE STAY!", "🚛 STEM OP SAXIONESCAPE!", "🎅🏽 SAXIONESCAPE"]; // messages to show when the page is inactive
+
+    // function to change the page title
+    function changeTitle() {
+        if (document.hidden) { // check if the page is inactive
+            var messageIndex = 0;
+            var attentionTimer = setInterval(function() {
+                document.title = attentionMessages[messageIndex]; // show the current attention message
+                messageIndex = (messageIndex + 1) % attentionMessages.length; // get the next attention message index
+            }, 1000); // change the message every second
+            document.addEventListener("visibilitychange", function() {
+                clearInterval(attentionTimer); // stop changing the message when the page becomes active again
+                document.title = pageTitle; // restore the original page title
+            });
+        } else {
+            document.title = pageTitle; // restore the original page title
+        }
+    }
+
+    // add event listeners for page visibility changes
+    document.addEventListener("visibilitychange", changeTitle);
+    document.addEventListener("webkitvisibilitychange", changeTitle);
+    document.addEventListener("mozvisibilitychange", changeTitle);
+    document.addEventListener("msvisibilitychange", changeTitle);
+</script>
+
 <body>
-    <header>
-        <h1>Saxion Escape Game</h1>
-    </header>
 
-    <nav>
-        <a href="#play">Play Game</a>
-        <a href="#info">Info</a>
-    </nav>
+    <!-- Topbar -->
+    <div id="topbar">
+        <div id="title">SaxionEscape</div>
+        <ul id="menu">
+            <li><a href="#">Play</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+    </div>
 
-    <img src="https://i.imgur.com/uSam7Zd.png" alt="SaxionEscape Logo">
-
-    <!-- Rest of your content goes here -->
+    <!-- Rest of your website content goes here -->
 
 </body>
-
 </html>
